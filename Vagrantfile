@@ -20,10 +20,16 @@ Vagrant.configure('2') do |config|
         vb.cpus = 1
     end
 
-    config.vm.define :lb01 do |machine1|
-        machine1.vm.host_name = "lb01.local"
+    config.vm.define :lb1 do |machine1|
+        machine1.vm.host_name = "lb1.local"
         machine1.vm.network "private_network", ip: "192.168.10.200"
         machine1.vm.provision "shell", inline: $useraddscript
+    end
+	
+	config.vm.define :lb2 do |machine6|
+        machine6.vm.host_name = "lb2.local"
+        machine6.vm.network "private_network", ip: "192.168.10.201"
+        machine6.vm.provision "shell", inline: $useraddscript
     end
 
     config.vm.define :web1 do |machine2|
