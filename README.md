@@ -52,7 +52,7 @@ Nat : DHCP
 Localhost (lb01): 192.168.10.200
 
 Nat : DHCP
-Localhost (lb01): 192.168.10.201
+Localhost (lb02): 192.168.10.201
 
 Nat : DHCP
 Localhost (web1): 192.168.10.210
