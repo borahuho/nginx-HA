@@ -27,21 +27,23 @@ Vagrant.configure('2') do |config|
     end
 
     config.vm.define :web1 do |machine2|
-        machine2.vm.host_name = "web01.local"
+        machine2.vm.host_name = "web1.local"
         machine2.vm.network "private_network", ip: "192.168.10.210"
         machine2.vm.provision "shell", inline: $useraddscript
     end
 
     config.vm.define :web2 do |machine3|
-        machine3.vm.host_name = "web02.local"
+        machine3.vm.host_name = "web2.local"
         machine3.vm.network "private_network", ip: "192.168.10.211"
         machine3.vm.provision "shell", inline: $useraddscript
 	end
+	
 	config.vm.define :db1 do |machine4|
         machine3.vm.host_name = "db1.local"
         machine3.vm.network "private_network", ip: "192.168.10.220"
         machine3.vm.provision "shell", inline: $useraddscript
 	end
+	
 	config.vm.define :db2 do |machine5|
         machine3.vm.host_name = "db2.local"
         machine3.vm.network "private_network", ip: "192.168.10.221"
