@@ -1,7 +1,7 @@
 # nginx-HA
 
 This vagrant will install 6 Ubuntu 18.04 machines, 2x Nginx webserver, 2x DB servers and 2x ubuntu server for Nginx loadbalancing.
-It will add some default users, groups and directory's. By default 3 webservers with no content.
+It will add some default users, groups and directory's.
 This Vagrant is to practice with Loadbalancing and High availability.
 This repository is intended for educational purpose only.
 
