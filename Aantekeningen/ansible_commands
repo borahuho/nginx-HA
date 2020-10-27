@@ -1,0 +1,99 @@
+
+# ping to a specific host file
+ansible all -i hosts_file -m ping
+
+# when hosts are in /etc/ansible/hosts file
+# uses -m == module ping
+ansible all -m ping
+
+# ping a group 
+ansible loadbalancers -m ping
+ansible webservers -i hosts_file -m ping
+
+# ping a group out of specific host file
+ansible webservers -i hosts_file -m ping
+
+# list of ansible modules
+ansible-doc -l
+
+# information about a specific module
+ansible-doc yum
+ansible-doc apt
+
+# run shell commands
+ansible all -m shell -a "id"
+
+# Ansible apt-update 
+ansible all -m apt -a "update_cache=yes cache_valid_time=86400" --become
+
+# check version server 
+ansible database_servers -a "cat /etc/issue.net"
+
+# Let's create a playbook
+# It has to be in a different file
+
+######################### first_play.yaml ################################
+---
+- hosts: webservers
+  become: true
+
+  tasks:
+  - name: Ensure apache is installed
+    apt: name=apache2 update_cache=yes state=latest
+
+
+######################## end first play ##################################
+
+# start a playbook
+ansible-playbook first_play.yaml
+
+# The results are returned as JSON and are pretty straightforward. Nothing was failed but nothing was changed since MariaDB is already installed.
+
+# run the setup task 
+ansible -m setup <host>
+
+# disable the setup module 
+######################### first_play.yaml ################################
+---
+- hosts: webservers
+  become: true
+  gather_facts: no
+
+  tasks:
+  - name: Ensure apache is installed
+    apt: name=apache2 update_cache=yes state=latest
+
+
+######################## end first play ##################################
+
+### test the OS familiy ### second play ###
+---
+- hosts: database_servers
+  become: true
+  gather_facts: yes 
+
+  tasks:
+  - name: Ensure MariaDB is installed 
+    apt: name=mariadb-server state=present
+    when: ansible_os_family == "Debian"
+
+  - name: Ensure MariaDB service is started and enabled 
+    service: name=mariadb enabled=yes state=started 
+
+- hosts: webservers
+  sudo: yes
+  gather_facts: yes
+
+  tasks:
+  - name: Ensure apache is installed 
+    apt: name=apache2 state=present 
+    when: ansible_os_family == "Debian"
+
+  - name: Ensure Apache service is enabled
+    service: name=apache2 enabled=yes 
+
+### end second play ###
+
+# delete applications
+state=absent
+
