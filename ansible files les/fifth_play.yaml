@@ -1,0 +1,36 @@
+---
+- hosts: database_servers
+  become: true
+  gather_facts: yes 
+
+  tasks:
+  - name: Ensure MariaDB is installed 
+    apt: name=mariadb-server state=present
+    when: ansible_os_family == "Debian"
+
+  - name: Ensure MariaDB service is started and enabled 
+    service: name=mariadb enabled=yes state=started 
+
+- hosts: webservers
+  become: true
+  gather_facts: yes
+
+  tasks:
+  - name: Ensure apache is installed 
+    apt: name=apache2 state=present 
+    when: ansible_os_family == "Debian"
+
+  - name: Ensure Apache service is enabled
+    service: name=apache2 enabled=yes  
+
+- hosts: loadbalancers
+  become: true
+  gather_facts: yes
+  
+  tasks:
+  - name: Ensure haproxy is installed on loadbalancers
+    apt: name=haproxy state=latest
+    when: ansible_os_family == "Debian"
+
+  - name: Ensure haproxy is enabled
+    service: name=haproxy enabled=yes

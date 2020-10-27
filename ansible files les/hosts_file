@@ -1,0 +1,23 @@
+[webserver1]
+web1 ansible_host=192.168.10.210
+
+[webserver2]
+web2 ansible_host=192.168.10.211
+
+[webservers:children]
+webserver1
+webserver2
+
+[loadbalancers]
+lb1 ansible_host=192.168.10.200
+lb2 ansible_host=192.168.10.201
+
+[database_servers]
+db1 ansible_host=192.168.10.220
+db2 ansible_host=192.168.10.221
+
+[all:vars]
+ansible_connection=ssh
+ansible_user=ansible
+#ansible_ssh_password=
+ansible_python_interpreter=/usr/bin/python3

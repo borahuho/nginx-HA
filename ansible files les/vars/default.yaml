@@ -1,0 +1,6 @@
+---
+app_user: "patrick"
+http_host: "noorderpoort"
+http_conf: "noorderpoort.conf"
+http_port: "80"
+disable_default: true

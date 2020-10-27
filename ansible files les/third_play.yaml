@@ -1,0 +1,9 @@
+---
+- hosts: webservers
+  become: true
+  gather_facts: yes
+
+  tasks:
+  - name: Remove apache if installed
+    apt: name=apache2 update_cache=yes state=absent
+
