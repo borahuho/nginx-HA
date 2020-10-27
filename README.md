@@ -49,10 +49,10 @@ Read your mission in "Opdracht"
 Vagrant VM will be set up with 2 network adapters
 ```
 Nat : DHCP
-Localhost (lb01): 192.168.10.200
+Localhost (lb1): 192.168.10.200
 
 Nat : DHCP
-Localhost (lb02): 192.168.10.201
+Localhost (lb2): 192.168.10.201
 
 Nat : DHCP
 Localhost (web1): 192.168.10.210
