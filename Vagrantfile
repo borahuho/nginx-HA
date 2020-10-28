@@ -61,4 +61,11 @@ Vagrant.configure('2') do |config|
         machine5.vm.provision "shell", inline: $useraddscript
 		machine5.vm.provision :shell, :inline => "sudo sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config; sudo systemctl restart sshd;", run: "always"
     end
+	
+	config.vm.define :ansible do |machine7|
+        machine7.vm.host_name = "ansible.local"
+        machine7.vm.network "private_network", ip: "192.168.10.250"
+        machine7.vm.provision "shell", inline: $useraddscript
+		machine7.vm.provision :shell, :inline => "sudo sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config; sudo systemctl restart sshd;", run: "always"
+    end
 end

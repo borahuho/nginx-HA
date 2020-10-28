@@ -1,3 +1,5 @@
+# Make a different host file in a different directory.
+# Show the differents between multiple host files.
 
 # ping to a specific host file
 ansible all -i hosts_file -m ping
