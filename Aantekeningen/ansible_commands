@@ -68,7 +68,7 @@ ansible -m setup <host>
 
 ######################## end first play ##################################
 
-### test the OS familiy ### second play ###
+### test the OS familiy ######## second play #############
 ---
 - hosts: database_servers
   become: true
@@ -94,7 +94,7 @@ ansible -m setup <host>
   - name: Ensure Apache service is enabled
     service: name=apache2 enabled=yes 
 
-### end second play ###
+################## end second play ################
 
 # delete applications
 state=absent

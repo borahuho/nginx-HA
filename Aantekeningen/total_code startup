@@ -1,0 +1,39 @@
+## on Ubuntu desktop:
+
+ssh-keygen
+
+#default place and no password!!!!!!
+
+## on all VM's:
+
+sudo ufw allow ssh
+sudo ufw enable
+sudo ufw status
+
+sudo adduser ansible
+WW:
+WW:
+enter
+
+# Add ansible user to sudoers file
+echo "ansible ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/ansible
+
+hostname -I
+
+## ON UBUNTU desktop:
+
+ssh-copy-id ansible@{IP}
+
+## ON VM's
+
+# Lock the user ansible
+sudo usermod -L ansible
+
+
+## Ansible install
+sudo apt update
+sudo apt install software-properties-common
+sudo apt-add-repository --yes --update ppa:ansible/ansible
+sudo apt install ansible
+
+## ansbile config 
