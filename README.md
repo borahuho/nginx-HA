@@ -1,6 +1,6 @@
 # nginx-HA
 
-This vagrant will install 7 Ubuntu 18.04 machines, 2x Nginx webserver, 2x DB servers and 2x ubuntu server for Nginx loadbalancing, extra 1 VM as Ansible-host.
+This vagrant will install 6 Ubuntu 18.04 machines, 2x Nginx webserver, 2x DB servers and 2x ubuntu server for Nginx loadbalancing.
 It will add some default users, groups and directory's.
 This Vagrant is to practice with Loadbalancing and High availability.
 This repository is intended for educational purpose only.
@@ -66,8 +66,6 @@ Localhost (db1): 192.168.10.220
 Nat : DHCP
 Localhost (db2): 192.168.10.221
 
-Nat : DHCP
-Localhost (ansible): 192.168.10.250
 ```
 ## Vagrant commands
 Start VM's with Vagrant
@@ -98,6 +96,5 @@ vagrant ssh web01
 vagrant ssh web02
 vagrant ssh db1
 vagrant ssh db2
-vagrant ssh ansible
 ```
 
